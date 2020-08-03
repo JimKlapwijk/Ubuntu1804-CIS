@@ -871,11 +871,11 @@
             jump: DROP
             source: "::1"
             ip_version: ipv6
+        when: ubuntu1804cis_ipv6_required
   when:
       - ubuntu1804cis_rule_3_5_4_2_2
       - ubuntu1804cis_firewall == "iptables"
       - ubuntu1804cis_setup_firewall
-      - ubuntu1804cis_ipv6_required
   tags:
       - level1
       - scored
@@ -907,11 +907,11 @@
               - tcp
               - udp
               - icmp
+          when: ubuntu1804cis_ipv6_required
   when:
       - ubuntu1804cis_rule_3_5_4_2_3
       - ubuntu1804cis_firewall == "iptables"
       - ubuntu1804cis_setup_firewall
-      - ubuntu1804cis_ipv6_required
   tags:
       - level1
       - notscored
@@ -940,11 +940,11 @@
           loop:
               - tcp
               - udp
+          when: ubuntu1804cis_ipv6_required
   when:
       - ubuntu1804cis_rule_3_5_4_2_4
       - ubuntu1804cis_firewall == "iptables"
       - ubuntu1804cis_setup_firewall
-      - ubuntu1804cis_ipv6_required
   tags:
       - level1
       - notscored
@@ -1039,6 +1039,7 @@
   ignore_errors: true
   when:
       - ubuntu1804cis_rule_3_7
+      - not ubuntu1804cis_ipv6_required
   notify:
       - generate new grub config
   tags:
